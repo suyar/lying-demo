@@ -1,0 +1,58 @@
+body {
+    background-color: #F2F2F2;
+}
+.sign-form {
+    display: none;
+    width: 380px;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 15px;
+}
+.layui-form-pane .layui-form-label {
+    width: 90px;
+    padding: 8px 0;
+}
+.layui-form-pane .layui-input-block {
+    margin-left: 90px;
+}
+.sign-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    padding: 15px 0;
+    letter-spacing: 5px;
+}
+.sign-subtitle {
+    text-align: center;
+    color: #999;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+.sign-code-input {
+    width: 130px;
+}
+.sign-captcha {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 36px;
+    max-width: 120px;
+    cursor: pointer;
+}
+.sign-form.layui-form-pane .layui-form-checkbox {
+    margin-left: 0;
+}
+.sign-icon {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+    cursor: pointer;
+}
+.sign-icon i {
+    font-size: 200px;
+}

@@ -1,0 +1,26 @@
+body {
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: #f2f2f2;
+}
+/*错误页面*/
+.error-page {
+    position: fixed;
+    width: 400px;
+    height: 300px;
+    box-sizing: border-box;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+    color: #393D49;
+}
+.error-page i {
+    font-size: 200px;
+}
+.error-page p {
+    font-size: 20px;
+    padding-top: 20px;
+    font-weight: bold;
+}
