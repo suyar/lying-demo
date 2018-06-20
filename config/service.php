@@ -18,4 +18,11 @@ return [
         'pass' => 'root',
         'prefix' => 'lying_',
     ],
+    'hook' => [
+        'events' => [
+            [Lying::EVENT_FRAMEWORK_ERROR, function ($event) {
+                Lying::$maker->dispatch->run('error/error/index', ['event'=>$event]);
+            }],
+        ],
+    ],
 ];

@@ -50,6 +50,7 @@ class UserLogin
                 if ($remember) {
                     \Lying::$maker->cookie->set(sha1(self::$AUTH_KEY), ['username'=>$user['username'], 'password'=>$user['password']], time() + 604800);
                 }
+                Permission::getUserPermissions($user['id'], true);
                 return true;
             }
         }
