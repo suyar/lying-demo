@@ -19,6 +19,6 @@ class ErrorCtrl extends Controller
         $event->stop = true;
         $exception = $event->e;
         $this->assign('msg', $exception->getMessage());
-        echo $this->render();
+        \Lying::$maker->response->clear()->setContent($this->render())->send();
     }
 }
