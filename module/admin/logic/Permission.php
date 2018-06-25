@@ -2,9 +2,6 @@
 namespace module\admin\logic;
 
 use model\RbacPermissionModel;
-use model\RbacRoleModel;
-use model\RbacRolePermissionModel;
-use model\RbacUserRoleModel;
 
 /**
  * Class Permission
@@ -33,19 +30,16 @@ class Permission
         $permissions = $cache->get('permission_' . $userId);
 
         if ($refresh || $permissions === false) {
-            $userRoles = RbacUserRoleModel::find()
-                ->select(['role_id'])
-                ->leftJoin(RbacRoleModel::table(), 'role_id=id')
-                ->where(['user_id'=>$userId, 'enable'=>1]);
-
-            $userPermissions = RbacRolePermissionModel::find()
-                ->select(['permission_id'])
-                ->distinct()
-                ->where(['role_id'=>$userRoles]);
 
             $permissions = RbacPermissionModel::find()
-                ->where(['id'=>$userPermissions, 'enable'=>1])
-                ->orderBy(['type', 'sort', 'id'])
+                ->select(['p.*'])
+                ->from(['p'=>'{{%rbac_permission}}'])
+                ->leftJoin(['rp'=>'{{%rbac_role_permission}}'], 'p.id=rp.permission_id')
+                ->leftJoin(['ur'=>'{{%rbac_user_role}}'], 'rp.role_id=ur.role_id AND ur.user_id=:user_id', [':user_id'=>$userId])
+                ->leftJoin(['r'=>'{{%rbac_role}}'], 'r.id=ur.role_id AND r.`enable`=1')
+                ->where(['p.enable'=>1])
+                ->groupBy(['p.id'])
+                ->orderBy(['p.type', 'p.sort', 'p.id'])
                 ->asArray()
                 ->all();
 
